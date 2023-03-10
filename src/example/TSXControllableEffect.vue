@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 interface PropsType {
-  value: number;
+  value?: number;
 }
 
 const TSXControllableEffect = defineComponent<PropsType>((props, { emit }) => {
@@ -12,7 +12,8 @@ const TSXControllableEffect = defineComponent<PropsType>((props, { emit }) => {
       <p>{props.value}</p>
       <button
         onClick={() => {
-          emit("update:value", props.value + 1);
+          (props.value || props.value === 0) &&
+            emit("update:value", props.value + 1);
         }}
       >
         value ++

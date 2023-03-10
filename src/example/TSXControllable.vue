@@ -1,6 +1,6 @@
 <script lang="tsx">
 interface PropsType {
-  value: number;
+  value?: number;
 }
 
 interface CtxType {
@@ -14,7 +14,8 @@ export default (props: PropsType, ctx: CtxType) => {
       <p>{props.value}</p>
       <button
         onClick={() => {
-          ctx.emit("update:value", props.value + 1);
+          (props.value || props.value === 0) &&
+            ctx.emit("update:value", props.value + 1);
         }}
       >
         value ++
